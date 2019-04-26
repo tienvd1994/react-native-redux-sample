@@ -1,0 +1,4 @@
+package-lock.json
+node_modules
+android/app/build
+ios/build
