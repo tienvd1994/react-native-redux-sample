@@ -8,31 +8,27 @@ import PropTypes from "prop-types";
 class AppContainer extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   people: [],
-    //   errorMessage: "",
-    //   isFetching: true
-    // };
+    this.state = { page: 1 };
   }
 
-  // async fetchRandomPeopleAPI() {
-  //   try {
-  //     let response = await fetch("https://randomuser.me/api/?results=15");
-  //     let json = await response.json();
-  //     this.setState({ people: json.results, isFetching: false });
-  //   } catch (error) {
-  //     this.setState({ errorMessage: error });
-  //   }
-  // }
-
   componentDidMount() {
-    // this.fetchRandomPeopleAPI();
-    // console.log(this.props);
-    this.props.fetchPeople();
+    this.props.fetchPeople(this.state.page, false, false);
   }
 
   onRefreshFlatList() {
-    this.props.fetchPeople();
+    this.setState = { page: 1 };
+
+    this.props.fetchPeople(this.state.page, true, false);
+  }
+
+  onLoadMoreFlatList() {
+    if (!this.props.randomPeople.isLoadMore) {
+      this.setState = {
+        page: this.state.page++
+      }
+
+      this.props.fetchPeople(this.state.page, false, true);
+    }
   }
 
   render() {
@@ -41,11 +37,13 @@ class AppContainer extends Component {
         people={this.props.randomPeople.peoples}
         onRefresh={() => this.onRefreshFlatList()}
         isFetching={this.props.randomPeople.isFetching}
+        onEndReached={() => this.onLoadMoreFlatList()}
+        isLoadMore={this.props.randomPeople.isLoadMore}
       />
     );
     if (this.props.randomPeople.isFetching) {
       // content = <ActivityIndicator size="large" />;
-      content = <View></View>;
+      content = <View />;
     }
     return <View style={styles.container}>{content}</View>;
   }
@@ -73,8 +71,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch /*, ownProps*/) => {
   return {
-    fetchPeople: function() {
-      dispatch(fetchPeople());
+    fetchPeople: function (page, isRefresh, isLoadMore) {
+      dispatch(fetchPeople(page, isRefresh, isLoadMore));
     }
   };
 };
