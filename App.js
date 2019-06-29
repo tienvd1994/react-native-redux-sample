@@ -201,13 +201,13 @@ export default class App extends Component {
   //   );
   // }
 
-  render() {
-    return (
-      <Provider store={store}>
-        <AppContainer />
-      </Provider>
-    );
-  }
+  // render() {
+  //   return (
+  //     <Provider store={store}>
+  //       <AppContainer />
+  //     </Provider>
+  //   );
+  // }
 
   // constructor(props) {
   //   super(props);
@@ -335,34 +335,44 @@ export default class App extends Component {
   //     );
   //   }
   // }
+
+  render() {
+    return (
+      <View>
+        <View style={{ width: 50, height: 50, backgroundColor: 'powderblue' }} />
+        <View style={{ width: 50, height: 50, backgroundColor: 'skyblue' }} />
+        <View style={{ width: 50, height: 50, backgroundColor: 'steelblue' }} />
+      </View>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 10,
-    backgroundColor: '#ecf0f1',
-  },
-  listItem: {
-    flex: 1,
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: '#d6d7da',
-    padding: 6,
-  },
-  imageWrapper: {
-    padding: 5,
-  },
-  title: {
-    fontSize: 20,
-    textAlign: 'left',
-    margin: 6,
-  },
-  subtitle: {
-    fontSize: 10,
-    textAlign: 'left',
-    margin: 6,
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     paddingTop: 10,
+//     backgroundColor: '#ecf0f1',
+//   },
+//   listItem: {
+//     flex: 1,
+//     flexDirection: 'row',
+//     borderBottomWidth: 1,
+//     borderBottomColor: '#d6d7da',
+//     padding: 6,
+//   },
+//   imageWrapper: {
+//     padding: 5,
+//   },
+//   title: {
+//     fontSize: 20,
+//     textAlign: 'left',
+//     margin: 6,
+//   },
+//   subtitle: {
+//     fontSize: 10,
+//     textAlign: 'left',
+//     margin: 6,
+//   },
+// });
